@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import App, { calcularNovoSaldo } from './App';
 
@@ -26,7 +26,7 @@ describe('Componente principal', () => {
     //     });
     // });
 
-    // describe ('Ao realizar uma transação', () => {
+    describe ('Ao realizar uma transação', () => {
     //     const saldoAnterior = 150;
 
     //     it ('💸  se saque o valor diminui', () => {
@@ -80,17 +80,57 @@ describe('Componente principal', () => {
 
     //         expect(novoSaldo).toBe(0)
     //     });
-    // });
 
-    function calculoQuadrado (numero) {
-        return Math.pow(numero, 2);
-    }
+        it('saque: a transação deve ser realizada', () => {
+            const {
+                getByText,
+                getByTestId,
+                getByLabelText
+            } = render(<App />);
 
-    it ('calcula valor quadrado de um número', () => {
-        const resultado = calculoQuadrado(2);
-        const resultadoB = calculoQuadrado(4);
+            const saldo             = getByText('R$ 1000');
+            const transacao         = getByLabelText('Saque');
+            const valor             = getByTestId('valor');
+            const botaoTransacao    = getByText('Realizar operação');
 
-        expect(resultado).toBe(4);
-        expect(resultadoB).toBe(16);
+            expect(saldo.textContent).toBe('R$ 1000');
+            fireEvent.click(transacao, { target: { value: 'saque' }});
+            fireEvent.change(valor, { target: { value: 10 }});
+            fireEvent.click(botaoTransacao);
+
+            expect(saldo.textContent).toBe('R$ 990');
+        });
+
+        it('deposito: a transação deve ser realizada', () => {
+            const {
+                getByText,
+                getByTestId,
+                getByLabelText
+            } = render(<App />);
+
+            const saldo             = getByText('R$ 1000');
+            const transacao         = getByLabelText('Depósito');
+            const valor             = getByTestId('valor');
+            const botaoTransacao    = getByText('Realizar operação');
+
+            expect(saldo.textContent).toBe('R$ 1000');
+            fireEvent.click(transacao, { target: { value: 'deposito' }});
+            fireEvent.change(valor, { target: { value: 10 }});
+            fireEvent.click(botaoTransacao);
+
+            expect(saldo.textContent).toBe('R$ 1010');
+        });
     });
+
+    // function calculoQuadrado (numero) {
+    //     return Math.pow(numero, 2);
+    // }
+
+    // it ('calcula valor quadrado de um número', () => {
+    //     const resultado = calculoQuadrado(2);
+    //     const resultadoB = calculoQuadrado(4);
+
+    //     expect(resultado).toBe(4);
+    //     expect(resultadoB).toBe(16);
+    // });
 });

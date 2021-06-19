@@ -11,4 +11,4 @@ describe('Comp. Transação do extrato', () => {
         />)
         expect(container.firstChild).toMatchSnapshot();
     });
-})
+});
