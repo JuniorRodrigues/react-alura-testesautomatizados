@@ -26,61 +26,71 @@ describe('Componente principal', () => {
     //     });
     // });
 
-    describe ('Ao realizar uma transação', () => {
-        it ('💸  se saque o valor diminui', () => {
-            const saldoAnterior = 150;
-            const saque = 50;
+    // describe ('Ao realizar uma transação', () => {
+    //     const saldoAnterior = 150;
 
-            const operacao = {
-                transacao: 'saque',
-                valor: saque
-            }
+    //     it ('💸  se saque o valor diminui', () => {
+    //         const saque = 50;
 
-            const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
+    //         const operacao = {
+    //             transacao: 'saque',
+    //             valor: saque
+    //         }
 
-            expect(novoSaldo).toBe(100);
-        });
+    //         const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
 
-        it ('🤑  se deposito o valor aumenta', () => {
-            const saldoAnterior = 150;
-            const deposito = 50;
+    //         expect(novoSaldo).toBe(100);
+    //     });
 
-            const operacao = {
-                transacao: 'deposito',
-                valor: deposito
-            }
+    //     it ('🤑  se deposito o valor aumenta', () => {
+    //         const deposito = 50;
 
-            const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
+    //         const operacao = {
+    //             transacao: 'deposito',
+    //             valor: deposito
+    //         }
 
-            expect(novoSaldo).toBe(200);
-        });
+    //         const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
 
-        it ('💳  ao sacar um valor que não tenho na conta', () => {
-            const saldoAnterior = 150;
-            const saque = 200;
+    //         expect(novoSaldo).toBe(200);
+    //     });
 
-            const operacao = {
-                transacao: 'saque',
-                valor: saque
-            }
+    //     it ('💳  ao sacar um valor que não tenho na conta', () => {
+    //         const saque = 200;
 
-            const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
+    //         const operacao = {
+    //             transacao: 'saque',
+    //             valor: saque
+    //         }
 
-            expect(novoSaldo).toBeLessThan(0)
-        });
+    //         const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
 
-        it ('🧧  ao zerar o saldo', () => {
-            const saldoAnterior = 150;
-            const saque = 150;
+    //         expect(novoSaldo).toBeLessThan(0)
+    //     });
 
-            const operacao = {
-                transacao: 'saque',
-                valor: saque
-            }
+    //     it ('🧧  ao zerar o saldo', () => {
+    //         const saque = 150;
 
-            const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
+    //         const operacao = {
+    //             transacao: 'saque',
+    //             valor: saque
+    //         }
 
-            expect(novoSaldo).toBe(0)
-        });
+    //         const novoSaldo = calcularNovoSaldo(operacao, saldoAnterior);
+
+    //         expect(novoSaldo).toBe(0)
+    //     });
+    // });
+
+    function calculoQuadrado (numero) {
+        return Math.pow(numero, 2);
+    }
+
+    it ('calcula valor quadrado de um número', () => {
+        const resultado = calculoQuadrado(2);
+        const resultadoB = calculoQuadrado(4);
+
+        expect(resultado).toBe(4);
+        expect(resultadoB).toBe(16);
     });
 });
