@@ -7,3 +7,4 @@
 * Operations by triggering events
 * Isolating tests with Component Rendering
 * Simulating API return
+* Function and mock
